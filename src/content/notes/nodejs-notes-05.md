@@ -4,7 +4,6 @@ part: "Node.js Notes"
 track: "nodejs"
 kind: "notes"
 updated: "2026-09-02"
-source: "Nodejs.docx"
 draft: false
 order: 5
 description: "Node.js — Anatomy of an HTTP Transaction."
@@ -41,7 +40,6 @@ response.end("Hello from Server")
 server.listen( 8000 ,()=> console.log("Server started"));
 ```
 
-### HTTP request methods
 
 ### GET
 

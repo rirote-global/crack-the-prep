@@ -4,7 +4,6 @@ part: "Node.js Notes"
 track: "nodejs"
 kind: "notes"
 updated: "2026-09-02"
-source: "Nodejs.docx"
 draft: false
 order: 12
 description: "Node.js — Creating Discord Bot in NodeJS."
@@ -13,21 +12,17 @@ Create account on discord and open it if already have account [https://discord.c
 
 ### Create discord server
 
-1.  Create your own server by clicking on plus sign on left side bar and then click on Create My Own as shown in screenshot below:
-
-![](/notes-img/nodejs-notes/img-008.webp)
-
+1.  Create your own server by clicking on plus sign on left side bar and then click on Create My Own.
 1.  Select for a club or community
     [https://discord.com/channels/1223500106897166447/1223500106897166450](https://discord.com/channels/1223500106897166447/1223500106897166450)
 2.  Now go to user settings (Gear icon) > Advanced. Enable the developer mode
-    ![](/notes-img/nodejs-notes/img-009.webp)
-
+    
 Create Discord application
 
 1.  Go to [https://discord.com/developers/applications](https://discord.com/developers/applications) and create an application (I have used node-bot. You can choose any name)
-2.  Now go to bot on left side and update username node-bot01 add Admin permission as shown in screenshot below: ![](/notes-img/nodejs-notes/img-010.webp)
-3.  Now go to Oauth2, select bot and then Administrator and copy the generated url [https://discord.com/oauth2/authorize?client_id=1223501200872181801&permissions=8&scope=bot](https://discord.com/oauth2/authorize?client_id=1223501200872181801&permissions=8&scope=bot) ![](/notes-img/nodejs-notes/img-011.webp)
-4.  Now paste the url in a new tab and add it to the server (Follow the step that will appear)
+2.  Now go to bot on left side and update username node-bot01 add Admin permission.
+
+3.  Now go to Oauth2, select bot and then Administrator and copy the generated url [https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot](https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot) 4.  Now paste the url in a new tab and add it to the server (Follow the step that will appear)
 
 Now we will use discordjs library to interact with the bot
 

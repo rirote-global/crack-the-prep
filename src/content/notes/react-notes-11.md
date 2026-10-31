@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 10
 description: "React — class component lifecycle (mounting, updating, unmounting, error handling), call order with children, error boundaries, and hook equivalents."

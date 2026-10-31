@@ -4,7 +4,6 @@ part: "JavaScript Notes"
 track: "javascript"
 kind: "notes"
 updated: "2026-09-14"
-source: "JavaScript Notes.docx"
 draft: false
 order: 19
 description: "JavaScript — Debouncing, Throttling and when to use each."
@@ -18,7 +17,6 @@ description: "JavaScript — Debouncing, Throttling and when to use each."
 
 When we use the search bar on a website like Flipkart, the website calls an API to fetch results. But it doesn't call the API on every keystroke — it waits for a pause, then searches. In the example below there was a pause between "school" and "bags", so only 2 requests happened.
 
-![](/notes-img/javascript-notes/img-027.webp)
 
 The **debounce** function makes a function wait until a certain amount of time has passed **since the last call** before running. It limits the number of times the function is called.
 
@@ -57,7 +55,6 @@ const getData = () => {
 
 Type anything in the text field and open the console. **Output:** `getData` runs on **every** keystroke — typing "school" logs 6 times.
 
-![](/notes-img/javascript-notes/img-028.webp)
 
 But in a search bar (or anywhere we don't need to call the API during continuous typing), it should call the API **only when we take a pause**. Let's implement that.
 
@@ -95,7 +92,6 @@ const debounce = function (func, delay) {
 const betterFunction = debounce(getData, 300);
 ```
 
-![](/notes-img/javascript-notes/img-029.webp)
 
 **I typed "school bag" and took a pause after typing "school":**
 
@@ -224,7 +220,6 @@ btn.addEventListener("click", throttleFunction(() => {
 
 Clicking rapidly logs "button is clicked" at most once every 1.5 seconds.
 
-![](/notes-img/javascript-notes/img-030.webp)
 
 With this version, events during the waiting period are simply **ignored** — **you will not get the last data after stopping**. For example, typing "school" quickly might only call the function for "s", and the final text is never sent.
 
@@ -276,11 +271,9 @@ log("school");  // stored (replaces "sc")
 
 **Throttle** — function executed every 2 seconds while typing:
 
-![](/notes-img/javascript-notes/img-031.webp)
 
 **Debounce** — function executed only when the user stopped typing for 2 seconds:
 
-![](/notes-img/javascript-notes/img-032.webp)
 
 | | Debouncing | Throttling |
 | --- | --- | --- |
@@ -297,9 +290,8 @@ log("school");  // stored (replaces "sc")
 
 **So for a search bar, debouncing is more suitable than throttling.**
 
-![](/notes-img/javascript-notes/img-033.webp)
 
-In the screenshot, both debounce and throttle are used on input boxes. With the first box (debounce), typing "school bag" called the function only 3 times with a 300 ms delay. With the second box (throttle), the function was called more than 3 times, because it runs once in every 300 ms interval while typing continues.
+In this example, both debounce and throttle are used on input boxes. With the first box (debounce), typing "school bag" called the function only 3 times with a 300 ms delay. With the second box (throttle), the function was called more than 3 times, because it runs once in every 300 ms interval while typing continues.
 
 #### Use case 2: Resizing the browser window
 

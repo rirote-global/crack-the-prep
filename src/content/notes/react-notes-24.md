@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 22
 description: "React — prop-types validators, required props, defaultProps, and typing props with TypeScript."

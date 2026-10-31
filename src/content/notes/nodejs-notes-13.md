@@ -4,7 +4,6 @@ part: "Node.js Notes"
 track: "nodejs"
 kind: "notes"
 updated: "2026-09-02"
-source: "Nodejs.docx"
 draft: false
 order: 13
 description: "Node.js — Uploading Files with NodeJS and Multer."

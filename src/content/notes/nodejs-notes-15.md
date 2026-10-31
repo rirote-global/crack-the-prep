@@ -4,7 +4,6 @@ part: "Node.js Notes"
 track: "nodejs"
 kind: "notes"
 updated: "2026-09-02"
-source: "Nodejs.docx"
 draft: false
 order: 15
 description: "Node.js — Deploy NodeJS Application on AWS."
@@ -96,13 +95,10 @@ Elastic Beanstalk supports applications developed in Go, Java, .NET, Node.js, PH
 
 1.  Go to Elastic beanstalk
 
-[https://ap-south-1.console.aws.amazon.com/elasticbeanstalk/home?region=ap-south-1#/welcome](https://ap-south-1.console.aws.amazon.com/elasticbeanstalk/home?region=ap-south-1#/welcome) ![](/notes-img/nodejs-notes/img-013.webp)
-
+[https://ap-south-1.console.aws.amazon.com/elasticbeanstalk/home?region=ap-south-1#/welcome](https://ap-south-1.console.aws.amazon.com/elasticbeanstalk/home?region=ap-south-1#/welcome) 
 1.  Add the details
-    ![](/notes-img/nodejs-notes/img-014.webp)
-2.  Delete the node_modules folder and compress all the files. Now upload the zip file as per below screenshot
-    ![](/notes-img/nodejs-notes/img-015.webp)
-3.  Click submit and after click skip to review
+    2.  Delete the node_modules folder and compress all the files. Now upload the zip file
+    3.  Click submit and after click skip to review
 
 Now we will need a mongodb URL as the local Url will not work.
 
@@ -110,4 +106,4 @@ Go to mongoDB atlas and create a free cluster. Now get the URL
 
 mongodb+srv://<username>:<password>@<cluster>.mongodb.net/?retryWrites=true&w=majority&appName=blogs
 
-1.  Go to your app, click on configuration on left side, Scroll down to Updates, monitoring and logging and add the env variable![](/notes-img/nodejs-notes/img-016.webp)
+1.  Go to your app, click on configuration on left side, Scroll down to Updates, monitoring and logging and add the env variable

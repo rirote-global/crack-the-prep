@@ -4,7 +4,6 @@ part: "JavaScript Notes"
 track: "javascript"
 kind: "notes"
 updated: "2026-09-14"
-source: "JavaScript Notes.docx"
 draft: false
 order: 6
 description: "JavaScript — Variable Hoisting."
@@ -216,11 +215,9 @@ a();
 
 When `a()` runs, `b` is not in `a`'s local memory, so JavaScript looks in the parent (global) environment and finds `b = 10`.
 
-![](/notes-img/javascript-notes/img-006.webp)
 
-![](/notes-img/javascript-notes/img-007.webp)
 
-JavaScript engine always creates a global execution context in the beginning to execute the code. It also creates a new **lexical environment** to store the variables defined in a function during the execution of that function. **A lexical environment is a data structure that holds identifier-variable mapping. Lexical Environment = the local memory + a reference to the lexical environment of its parent.** In the above screenshot you can see `c()` is lexically inside `a()`, and `a()` is lexically in the global environment. Initially the JavaScript engine searches for a variable in its own lexical environment, then it searches in the lexical environment of its parent, and so on. **This search is called the scope chain.** The global environment has `null` as its parent.
+JavaScript engine always creates a global execution context in the beginning to execute the code. It also creates a new **lexical environment** to store the variables defined in a function during the execution of that function. **A lexical environment is a data structure that holds identifier-variable mapping. Lexical Environment = the local memory + a reference to the lexical environment of its parent.** You can see `c()` is lexically inside `a()`, and `a()` is lexically in the global environment. Initially the JavaScript engine searches for a variable in its own lexical environment, then it searches in the lexical environment of its parent, and so on. **This search is called the scope chain.** The global environment has `null` as its parent.
 
 ```js
 function a() {

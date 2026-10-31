@@ -6,7 +6,6 @@ kind: "notes"
 order: 4
 slug: "basics-objects"
 updated: "2026-09-14"
-source: "JavaScript Notes.docx"
 draft: false
 description: "JavaScript basics — Built-in Objects, this, Prototypes & Classes."
 ---
@@ -1086,7 +1085,6 @@ Every regular function also has a **`prototype` property** — an object that be
 
 The saying "everything in JavaScript is an object" comes from this: arrays, functions and dates all have `Object.prototype` at the end of their prototype chain.
 
-![](/notes-img/javascript-notes/img-001.webp)
 
 ```js
 const arr = [1, 2];
@@ -1101,7 +1099,7 @@ console.log(Function.prototype.__proto__ === Object.prototype);         // true
 
 ```js
 const object = {
-  name: "Akshay",
+  name: "Arjun",
   city: "Dehradun",
   getIntro: function () {
     console.log(this.name + " from " + this.city);
@@ -1122,7 +1120,6 @@ object2.getIntro();        // "Aditya from Dehradun" — inherited method, `this
 
 `object2` now inherits from `object`. Because `city` is not defined on `object2`, it is read from `object`; the same happens for methods.
 
-![](/notes-img/javascript-notes/img-002.webp)
 
 **Better alternatives to setting `__proto__`:**
 
@@ -1150,7 +1147,6 @@ function fun() {
 fun.mybind(); // "User defined bind method" — every function now has mybind
 ```
 
-![](/notes-img/javascript-notes/img-003.webp)
 
 This is how **polyfills** are written. In application code, avoid modifying built-in prototypes — it can clash with future JavaScript features or other libraries.
 
@@ -1493,7 +1489,6 @@ console.log(gen.next()); // { value: 3, done: false }
 console.log(gen.next()); // { value: undefined, done: true }
 ```
 
-![](/notes-img/javascript-notes/img-004.webp)
 
 ```js
 // Generators work with for...of and spread

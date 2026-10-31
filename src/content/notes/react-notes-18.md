@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 15
 description: "React — createPortal, rendering modals and tooltips outside the parent DOM, and event bubbling through portals."

@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 21
 description: "React Router v7 — setup, routes, nested/layout/index routes, dynamic and optional segments, navigation, URL values, protected routes, 404s, and v5 vs v6+ differences."

@@ -4,16 +4,13 @@ part: "Node.js Notes"
 track: "nodejs"
 kind: "notes"
 updated: "2026-09-02"
-source: "Nodejs.docx"
 draft: false
 order: 1
 description: "Node.js — Introduction."
 ---
 Node.js is a single-threaded, open-source, cross-platform runtime environment for building fast and scalable server-side and networking applications. It runs on the V8 JavaScript runtime engine, and it uses event-driven, non-blocking I/O architecture, which makes it efficient and suitable for real-time applications.
 
-### Installation
 
-### sudo apt-get install -y nodejs
 
 ### sudo apt install npm
 

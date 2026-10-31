@@ -3,7 +3,6 @@ title: "React Interview Questions"
 track: "react"
 kind: "questions"
 updated: "2026-09-15"
-source: "React JS Interview Question.docx"
 draft: false
 order: 1
 description: "React interview questions — short answers, examples with output, and links to the detailed notes."
@@ -506,17 +505,14 @@ When diffing, React first compares the root elements, and the behavior varies by
 
 **List without a key attribute**
 
-![](/notes-img/react-questions/img-001.webp)
 
 Consider a list with two items, *Bruce* and *Clark*. Adding an item at the end: React iterates both lists, comparing items one by one. Finding no difference in the first two, it simply **inserts** the third — updating the tree without rebuilding it.
 
-![](/notes-img/react-questions/img-002.webp)
 
 However, inserting an item at the **beginning** makes React see every position as different, so it **mutates every child** — inefficient.
 
 **List with a key attribute**
 
-![](/notes-img/react-questions/img-003.webp)
 
 When items have unique keys, React uses them to **match children across trees**. If a new item (`key=3`) is added at the top, React identifies it as new and **preserves the subtrees** for keys 1 and 2.
 
@@ -539,8 +535,7 @@ The index identifies a **position**, not an **item**. When the list is reordered
 
 1.  Initially we have 3 items, each with its index as the key:
 
-    ![](/notes-img/react-questions/img-004.webp)
-
+    
     -   `key=0` has a value of 1
     -   `key=1` has a value of 2
     -   `key=2` has a value of 3
@@ -1468,7 +1463,6 @@ Both make HTTP requests.
 -   Views listen to stores and re-render when they change.
 -   It makes data changes **predictable** and reduces bugs from tangled two-way updates.
 
-![](/notes-img/react-questions/img-005.webp)
 
 **Redux** is a simplified take on Flux: a **single store**, **no dispatcher**, and **pure reducers**.
 

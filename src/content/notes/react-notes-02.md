@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 1
 description: "React — what React is, declarative UI, virtual DOM, data binding, and how to set up a project."
@@ -432,8 +431,7 @@ A package.json file:
 -   defines scripts like `dev`, `build` and `test`,
 -   makes your build reproducible, and therefore easier to share with other developers.
 
-A package.json file may look similar to this: ![](/notes-img/react-notes/img-003.webp)
-
+A package.json file may look similar to this: 
 -   **name** — the name of your app. It must be lowercase, and may contain hyphens and underscores.
 -   **version** — the current version, in the form `major.minor.patch` (e.g. `0.1.0`).
 -   **"private": true** — npm will **refuse to publish** the package. This prevents accidentally publishing a private project.

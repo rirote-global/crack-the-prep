@@ -4,7 +4,6 @@ part: "JavaScript Notes"
 track: "javascript"
 kind: "notes"
 updated: "2026-09-14"
-source: "JavaScript Notes.docx"
 draft: false
 order: 9
 description: "JavaScript — Event Listener."
@@ -56,7 +55,6 @@ Button Clicked 3
 
 Now `xyz()` forms a closure with `attachEventListeners`, so it remembers `count` even after `attachEventListeners` has finished. In DevTools (Elements tab → Event Listeners) you can see the listener attached to the Click Me button, and its scope chain (Closure, Script and Global).
 
-![](/notes-img/javascript-notes/img-016.webp)
 
 ### Garbage collection and removing event listeners
 

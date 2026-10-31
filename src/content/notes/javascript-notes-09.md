@@ -4,7 +4,6 @@ part: "JavaScript Notes"
 track: "javascript"
 kind: "notes"
 updated: "2026-09-14"
-source: "JavaScript Notes.docx"
 draft: false
 order: 15
 description: "JavaScript — call, apply and bind method."

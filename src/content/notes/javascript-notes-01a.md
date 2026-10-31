@@ -6,7 +6,6 @@ kind: "notes"
 order: 1
 slug: "basics-syntax"
 updated: "2026-09-14"
-source: "JavaScript Notes.docx"
 draft: false
 description: "JavaScript basics — Syntax, Variables & Operators."
 ---

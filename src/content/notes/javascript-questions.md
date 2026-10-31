@@ -3,7 +3,6 @@ title: "JavaScript Interview Questions"
 track: "javascript"
 kind: "questions"
 updated: "2026-09-14"
-source: "JavaScript Interview Question.docx"
 draft: false
 order: 1
 description: "JavaScript interview questions — short answers, examples with output, and links to the detailed notes."
@@ -77,9 +76,7 @@ console.log('3');
 // 1, 3, 2
 ```
 
-![](/notes-img/javascript-questions/img-001.webp)
 
-![](/notes-img/javascript-questions/img-002.webp)
 
 ### Difference between Java and JavaScript
 
@@ -4690,7 +4687,6 @@ undefined
 
 `delete` removes only **own** properties. In `obj2`, `height` is on the **prototype** (created by `Object.create`), so `delete obj2.height` does nothing and the inherited value is still found.
 
-![](/notes-img/javascript-questions/img-003.webp)
 
 </details>
 

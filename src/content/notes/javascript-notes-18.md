@@ -4,7 +4,6 @@ part: "JavaScript Notes"
 track: "javascript"
 kind: "notes"
 updated: "2026-09-14"
-source: "JavaScript Notes.docx"
 draft: false
 order: 13
 description: "JavaScript — Async vs defer."
@@ -17,7 +16,6 @@ description: "JavaScript — Async vs defer."
 <script src="app.js"></script>
 ```
 
-![](/notes-img/javascript-notes/img-036.webp)
 
 In the normal scenario, when the HTML page loads, the browser parses the HTML line by line. When it reaches a `<script>` tag, it **stops parsing**, fetches the JavaScript file, executes it, and only then continues parsing the HTML. So JavaScript files **block** the rendering of HTML.
 
@@ -40,7 +38,6 @@ This is why a script in `<head>` that accesses elements further down fails:
 <script async src="analytics.js"></script>
 ```
 
-![](/notes-img/javascript-notes/img-037.webp)
 
 With `async`, the script is **fetched in parallel** with HTML parsing. As soon as it is fully downloaded, it **executes immediately** — HTML parsing is paused during execution, then continues.
 
@@ -53,7 +50,6 @@ With `async`, the script is **fetched in parallel** with HTML parsing. As soon a
 <script defer src="app.js"></script>
 ```
 
-![](/notes-img/javascript-notes/img-038.webp)
 
 With `defer`, the script is also **fetched in parallel** with HTML parsing, but it **executes only after HTML parsing is complete** (just before the `DOMContentLoaded` event).
 

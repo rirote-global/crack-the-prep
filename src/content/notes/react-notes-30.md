@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 26
 description: "Redux — what it is, three core concepts and principles, actions, reducers, store, combineReducers, middleware, redux-thunk, and Redux Toolkit."
@@ -41,7 +40,6 @@ This chapter explains **"pure" Redux** (`createStore`, hand-written action types
 
 To understand the concepts, let's take the example of a **cake shop**.
 
-![](/notes-img/react-notes/img-023.webp)
 
 | Cake shop scenario | Redux | Purpose |
 | --- | --- | --- |
@@ -59,7 +57,6 @@ To understand the concepts, let's take the example of a **cake shop**.
 2.  **State is read-only:** the only way to change the state is to **dispatch an action**, an object describing what happened.
 3.  **Changes are made with pure functions:** to specify how the state tree is transformed by actions, you write a **pure reducer** — a function that takes state and action as parameters and, based on `action.type`, returns a **new** state.
 
-![](/notes-img/react-notes/img-024.webp)
 
 **Data flow is one-way:** `dispatch(action)` → `reducer(state, action)` → new state → UI updates.
 

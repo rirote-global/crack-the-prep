@@ -4,7 +4,6 @@ part: "Node.js Notes"
 track: "nodejs"
 kind: "notes"
 updated: "2026-09-02"
-source: "Nodejs.docx"
 draft: false
 order: 7
 description: "Node.js — What is REST API?."
@@ -72,7 +71,6 @@ app.listen(PORT, ()=> console.log("Server started at PORT",PORT);
 ```js
 **app.get("/users", (req, res)=>{**
 ```
-### const html = `
 
 ### <ul>
 
@@ -137,7 +135,6 @@ app.listen(PORT, ()=> console.log("Server started at PORT",PORT);
 ```js
 **app.get("/users", (req, res)=>{**
 ```
-### const html = `
 
 ### <ul>
 

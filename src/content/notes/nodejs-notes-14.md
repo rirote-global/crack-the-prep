@@ -4,7 +4,6 @@ part: "Node.js Notes"
 track: "nodejs"
 kind: "notes"
 updated: "2026-09-02"
-source: "Nodejs.docx"
 draft: false
 order: 14
 description: "Node.js — NodeJS Blogging Application."
@@ -81,7 +80,6 @@ Now we will use Bootstrap for html and css pages. So we are going to use CDN but
 
 Let’s create two files in partials
 
-### Create views/partials/head.ejs
 
 ### <link
 
@@ -95,13 +93,9 @@ Let’s create two files in partials
 
 **/>**
 
-### `<meta charset="UTF-8" />`
 
-### `<meta http-equiv="X-UA-Compatible" content="IE=edge" />`
 
-### `<meta name="viewport" content="width=device-width, initial-scale=1.0" />`
 
-### Create views/partials/script.ejs
 
 ### <script
 
@@ -111,31 +105,18 @@ Let’s create two files in partials
 
 **crossorigin="anonymous"**
 
-### \>`</script>`
 
-### Update views/home.ejs
 
-### <!DOCTYPE html>
 
-### `<html lang="en">`
 
-### `<head>`
 
-### <%- include('./partials/head') %>
 
-### <title>Homepage</title>
 
-### `</head>`
 
-### `<body>`
 
-### <h1>Homepage</h1>
 
-### <%- include('./partials/scripts') %>
 
-### `</body>`
 
-### `</html>`
 
 ### Navbar
 
@@ -480,31 +461,18 @@ next();
 ```js
 **module.exports = router;**
 ```
-### Create views/signup.ejs
 
-### <!DOCTYPE html>
 
-### `<html lang="en">`
 
-### `<head>`
 
-### <%- include('./partials/head') %>
 
-### <title>Signup</title>
 
-### `</head>`
 
-### `<body>`
 
-### <%- include('./partials/nav') %>
 
-### <div class="container mt-4">
 
-### <form action="/user/signup" method="post">
 
-### <div class="mb-3">
 
-### <label for="fullName" class="form-label">Full Name</label>
 
 ### <input
 
@@ -520,11 +488,8 @@ next();
 
 **/>**
 
-### </div>
 
-### <div class="mb-3">
 
-### <label for="exampleInputEmail1" class="form-label"
 
 ### \>Email address</label
 
@@ -548,13 +513,9 @@ next();
 
 **We'll never share your email with anyone else.**
 
-### </div>
 
-### </div>
 
-### <div class="mb-3">
 
-### <label for="exampleInputPassword1" class="form-label">Password</label>
 
 ### <input
 
@@ -568,19 +529,12 @@ next();
 
 **/>**
 
-### </div>
 
-### <button type="submit" class="btn btn-primary">Submit</button>
 
-### </form>
 
-### </div>
 
-### <%- include('./partials/scripts') %>
 
-### `</body>`
 
-### `</html>`
 
 ### Update index.js
 
@@ -597,7 +551,6 @@ next();
 
 **const PORT= 8000;**
 
-### mongoose
 
 ### .connect('mongodb://127.0.0.1:27017/blogit')
 
@@ -1053,11 +1006,8 @@ Arjun
 
 </nav>
 
-### <% if (locals.error) { %>
 
-### <div class="container mt-4">
 
-### <div class="alert alert-danger" role="alert"><%= locals.error %></div>
 
 ### </div>
 
@@ -1354,31 +1304,18 @@ ref: "user",
 ```
 },
 
-### Create views/addBlog.js
 
-### <!DOCTYPE html>
 
-### `<html lang="en">`
 
-### `<head>`
 
-### <%- include('./partials/head') %>
 
-### <title>Add New Blog</title>
 
-### `</head>`
 
-### `<body>`
 
-### <%- include('./partials/nav') %>
 
-### <div class="container mt-3">
 
-### <form action="/blog" method="post" enctype="multipart/form-data">
 
-### <div class="mb-3">
 
-### <label for="coverImage" class="form-label">Cover Image</label>
 
 ### <input
 
@@ -1394,11 +1331,8 @@ ref: "user",
 
 **/>**
 
-### </div>
 
-### <div class="mb-3">
 
-### <label for="title" class="form-label">Title</label>
 
 ### <input
 
@@ -1414,31 +1348,18 @@ ref: "user",
 
 **/>**
 
-### </div>
 
-### <div class="mb-3">
 
-### <label for="body">Body</label>
 
-### <textarea name="body" class="form-control" id="body"></textarea>
 
-### </div>
 
-### <div class="mb-3">
 
-### <button class="btn btn-primary">Submit</button>
 
-### </div>
 
-### </form>
 
-### </div>
 
-### <%- include('./partials/scripts') %>
 
-### `</body>`
 
-### `</html>`
 
 ### Create routes/blog.js
 
@@ -1578,106 +1499,64 @@ console.log("Server started at ", PORT);
 ```
 Now render the blogs on homepage
 
-### Update views/home.ejs
 
-### <!DOCTYPE html>
 
-### `<html lang="en">`
 
-### `<head>`
 
-### <%- include('./partials/head') %>
 
-### <title>Homepage</title>
 
-### `</head>`
 
-### `<body>`
 
-### <%- include('./partials/nav') %>
 
-### <div class="container mt-3">
 
 ### <div class="row row-cols-4">
 
 ```js
 **<% blogs.forEach(blog => { %>**
 ```
-### <div class="col">
 
-### <div class="card col" style="width: 18rem">
 
-### <img src="<%= blog.coverImageURL %>" class="card-img-top" />
 
-### <div class="card-body">
 
-### <h5 class="card-title"><%= blog.title %></h5>
 
-### <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
 
-### </div>
 
-### </div>
 
 ### </div>
 
 **<% }) %>**
 
-### </div>
 
-### </div>
 
-### <%- include('./partials/scripts') %>
 
-### `</body>`
 
-### `</html>`
 
-### Create views/blog.ejs
 
-### <!DOCTYPE html>
 
-### `<html lang="en">`
 
-### `<head>`
 
-### <%- include('./partials/head') %>
 
-### <title>Blog</title>
 
-### `</head>`
 
-### `<body>`
 
-### <%- include('./partials/nav') %>
 
-### <div class="container mt-4">
 
 ### <h1><%= blog.title %></h1>
 
 **<img src="<%= blog.coverImageURL %>" width="700px" style="max-width: 100%;"/>**
 
-### <pre class="mt-3"><%= blog.body %></pre>
 
-### </div>
 
-### <div class="container mt-4">
 
-### <img src="<%= blog.createdBy.profileImageURL %>" width="50px" /> <%=
 
-### blog.createdBy.fullName %>
 
-### </div>
 
 ### <div class="container mt-3">
 
 **<h1>Comments (<%= comments.length %>)</h1>**
 
-### <% if (locals.user) { %>
 
-### <form action="/blog/comment/<%= blog._id %>" method="post">
 
-### <div class="mb-3">
 
 ### <input
 
@@ -1693,7 +1572,6 @@ Now render the blogs on homepage
 
 **<button class="btn btn-sm btn-primary" type="submit" style="margin: 10px 5px;">Add</button>**
 
-### </div>
 
 ### </form>
 
@@ -1704,27 +1582,18 @@ Now render the blogs on homepage
 ```js
 **<% comments.forEach(comment => { %>**
 ```
-### <div>
 
-### <img src="<%= comment.createdBy.profileImageURL %>" width="50px" />
 
-### <%= comment.createdBy.fullName %>
 
-### <pre style="padding: 10px;"><%= comment.content %></pre>
 
 ### </div>
 
 **<% }) %>**
 
-### </div>
 
-### </div>
 
-### <%- include('./partials/scripts') %>
 
-### `</body>`
 
-### `</html>`
 
 ### Create models/comment.js
 
@@ -1889,5 +1758,3 @@ Now render the blogs on homepage
 ### "createdBy"
 
 **);**
-
-### ![](/notes-img/nodejs-notes/img-012.webp)

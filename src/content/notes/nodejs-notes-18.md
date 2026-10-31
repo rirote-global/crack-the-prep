@@ -4,20 +4,17 @@ part: "Node.js Notes"
 track: "nodejs"
 kind: "notes"
 updated: "2026-09-02"
-source: "Nodejs.docx"
 draft: false
 order: 18
 description: "Node.js — How to scale NodeJs applications using the cluster module.."
 ---
 IN normal scenario we have one nodejs server and multiple users like below
 
-![](/notes-img/nodejs-notes/img-026.webp)
 
 But this is not scalable as with increasing user, This will increase the load on server and there will be delay in response.
 
 **Clusters of Node.js** processes can be used to run multiple instances of Node.js that can distribute workloads among their application threads. When process isolation is not needed, use the worker_threads module instead, which allows running multiple application threads within a single Node.js instance.
 
-### Let's understand it using code
 
 ### index.js
 

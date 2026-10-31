@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 27
 description: "React-Redux — Provider, connect with mapStateToProps/mapDispatchToProps, useSelector and useDispatch hooks, multiple reducers, middleware, DevTools, and Redux Toolkit."

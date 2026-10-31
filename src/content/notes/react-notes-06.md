@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 5
 description: "React — handling events, passing arguments, synthetic events, and binding this in class components."

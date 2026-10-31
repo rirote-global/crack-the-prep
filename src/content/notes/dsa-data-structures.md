@@ -4,7 +4,6 @@ part: "DSA"
 track: "dsa"
 kind: "notes"
 updated: "2026-09-06"
-source: "JavaScript Notes.docx"
 draft: false
 order: 2
 slug: "data-structures"

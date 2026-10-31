@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 24
 description: "React — legacy createReactClass: default props, initial state and autobinding compared with ES6 classes and function components."

@@ -4,7 +4,6 @@ part: "JavaScript Notes"
 track: "javascript"
 kind: "notes"
 updated: "2026-09-14"
-source: "JavaScript Notes.docx"
 draft: false
 order: 12
 description: "JavaScript — Promise."
@@ -21,7 +20,6 @@ A Promise is in one of these states:
 
 A promise that is fulfilled or rejected is called **settled**.
 
-![](/notes-img/javascript-notes/img-035.webp)
 
 If you log a promise, it may initially show `pending`. When you expand it later in Chrome DevTools, Chrome shows the **current** state, so it can show `fulfilled` — the console updates the object when you expand it.
 

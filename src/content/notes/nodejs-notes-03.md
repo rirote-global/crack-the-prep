@@ -4,18 +4,14 @@ part: "Node.js Notes"
 track: "nodejs"
 kind: "notes"
 updated: "2026-09-02"
-source: "Nodejs.docx"
 draft: false
 order: 3
 description: "Node.js — How Nodejs Works."
 ---
-![](/notes-img/nodejs-notes/img-001.webp)
 
-Client makes a request to a server (nodejs). Now requests will come to our server. On the server, requests will be queued in the event queue. Now from the queue, the Event loop keeps a watch on the event queue and picks up requests in FIFO order. Now requests can be blocking (sync task) or non-blocking (async task) operations. ![](/notes-img/nodejs-notes/img-002.webp)
-
+Client makes a request to a server (nodejs). Now requests will come to our server. On the server, requests will be queued in the event queue. Now from the queue, the Event loop keeps a watch on the event queue and picks up requests in FIFO order. Now requests can be blocking (sync task) or non-blocking (async task) operations. 
 If the request is non-blocking then the event loop takes the requests, processes it and returns the responses to the user. If the request is blocking operation then the request will go to Thread pool (A pool of threads). A **thread pool** is a group of worker threads separate from the main event loop thread Node.js uses to execute JavaScript code and handle requests. Now here a thread/worker will be assigned to the request if available.
 
-![](/notes-img/nodejs-notes/img-003.webp)
 
 ## Asynchronous flow control
 
@@ -100,7 +96,6 @@ A middleware function will return another function, and a terminator function wi
 
 **2**
 
-### Arjun: Mehta
 
 ### Concurrency and Throughput
 
@@ -110,11 +105,9 @@ JavaScript execution in Node.js is single threaded, so concurrency refers to the
 
 Let me explain the priority order of the queues. **First, know that all user-written synchronous JavaScript code takes priority over async code that the runtime would like to execute. This means that only after the call stack is empty does the event loop come into play.**
 
-The following diagram shows a simplified overview of the event loop's order of operations.
+In simplified form, the event loop runs these phases in order: timers, pending callbacks, idle/prepare, poll, check, close callbacks. (Source: [Node.js documentation](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick).)
 
-![](/notes-img/nodejs-notes/img-004.webp)
 
-![](/notes-img/nodejs-notes/img-005.webp)
 
 Each box will be referred to as a "phase" of the event loop.
 
@@ -135,7 +128,6 @@ Normal Sequence for the code:
 -   Close callbacks
 -   Yes Pending ? NO Exit.
 
-### Phases in Detail
 
 ### timers
 
@@ -238,7 +230,7 @@ timeout
 
 ## Understanding process.nextTick()
 
-You may have noticed that process.nextTick() was not displayed in the diagram, even though it's a part of the asynchronous API. This is because process.nextTick() is not technically part of the event loop. Instead, the nextTickQueue will be processed after the current operation is completed, regardless of the current phase of the event loop
+process.nextTick() is not in that list, even though it is part of the asynchronous API. This is because process.nextTick() is not technically part of the event loop. Instead, the nextTickQueue will be processed after the current operation is completed, regardless of the current phase of the event loop
 
 Looking back at our diagram, any time you call process.nextTick() in a given phase, all callbacks passed to process.nextTick() will be resolved before the event loop continues.
 
@@ -364,7 +356,6 @@ Hello from Immediate 1
 
     Output: (Here output cannot be determined)
     ```
-![](/notes-img/nodejs-notes/img-006.webp)
 
 1.  Code with I/O operation
 
@@ -702,6 +693,5 @@ A thread pool is a group of worker threads separate from the main event loop thr
 
 By default, libuv uses a thread pool with 4 threads, but this number can be changed by setting the UV_THREADPOOL_SIZEenvironment variable
 
-![](/notes-img/nodejs-notes/img-007.webp)
 
 We can use the crypto module to check the working of it.

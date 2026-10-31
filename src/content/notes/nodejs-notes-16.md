@@ -4,7 +4,6 @@ part: "Node.js Notes"
 track: "nodejs"
 kind: "notes"
 updated: "2026-09-02"
-source: "Nodejs.docx"
 draft: false
 order: 16
 description: "Node.js — WebSocket in NodeJS."
@@ -136,55 +135,33 @@ npm i socket.io
 ```
 Implement socker.io on frontend
 
-### Update public/index.html
 
-### <!DOCTYPE html>
 
-### `<html lang="en">`
 
-### `<head>`
 
-### `<meta charset="UTF-8" />`
 
-### `<meta name="viewport" content="width=device-width, initial-scale=1.0" />`
 
-### <title>Chat App</title>
 
-### `</head>`
 
 ### `<body>`
 
 **Chatting..**
 
-### `<script src="/socket.io/socket.io.js"></script>`
 
 ### `<script>`
 
 **var socket = io();**
 
-### `</script>`
 
-### `</body>`
 
-### `</html>`
 
-### ![](/notes-img/nodejs-notes/img-017.webp)
 
-### Update public/index.html
 
-### <!DOCTYPE html>
 
-### `<html lang="en">`
 
-### `<head>`
 
-### `<meta charset="UTF-8" />`
 
-### `<meta name="viewport" content="width=device-width, initial-scale=1.0" />`
 
-### <title>Chat App</title>
-
-### `</head>`
 
 ### `<body>`
 
@@ -192,9 +169,7 @@ Implement socker.io on frontend
 
 **<input type="text" name="msg" id="message" placeholder="Enter Message" />**
 
-### <button id="sendBtn">Send</button>
 
-### `<script src="/socket.io/socket.io.js"></script>`
 
 ### `<script>`
 
@@ -216,15 +191,12 @@ Implement socker.io on frontend
 
 **})**
 
-### `</script>`
 
-### `</body>`
 
 ### `</html>`
 
 We can see the message when we send it to the server in the network console.
 
-![](/notes-img/nodejs-notes/img-018.webp)
 
 Let’s get the message in the server
 
@@ -266,7 +238,6 @@ res.sendFile("/public/index.html");
 
 server.listen(9000, () => console.log("Server started at 9000"));
 ```
-![](/notes-img/nodejs-notes/img-019.webp)
 
 Now we want the server to emit the message to all clients.
 
@@ -369,35 +340,23 @@ socket.emit("user-message",message)
 
 `</html>`
 
-![](/notes-img/nodejs-notes/img-020.webp)
 
 Now we want to show it on the frontend not in the console.
 
-### Update public/index.html
 
-### <!DOCTYPE html>
 
-### `<html lang="en">`
 
-### `<head>`
 
-### `<meta charset="UTF-8" />`
 
-### `<meta name="viewport" content="width=device-width, initial-scale=1.0" />`
 
-### <title>Chat App</title>
 
-### `</head>`
 
 ### `<body>`
 
 **<input type="text" name="msg" id="message" placeholder="Enter Message" />**
 
-### <button id="sendBtn">Send</button>
 
-### <div id="messages"></div>
 
-### `<script src="/socket.io/socket.io.js"></script>`
 
 ### `<script>`
 
@@ -432,10 +391,6 @@ Now we want to show it on the frontend not in the console.
 
 **})**
 
-### `</script>`
 
-### `</body>`
 
-### `</html>`
 
-![](/notes-img/nodejs-notes/img-021.webp)

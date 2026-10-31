@@ -4,7 +4,6 @@ part: "JavaScript Notes"
 track: "javascript"
 kind: "notes"
 updated: "2026-09-14"
-source: "JavaScript Notes.docx"
 draft: false
 order: 10
 description: "JavaScript — Event Loop."
@@ -15,11 +14,9 @@ We are already aware of the execution context and call stack, and we know JavaSc
 
 We can't do that in the call stack, because the call stack doesn't have a timer. This is where the **browser** comes into the picture. Browsers have a timer, local storage, the DOM, network access and much more, which our code can use through **Web APIs** (like `setTimeout`, `fetch`, `document`, `localStorage`, `console`).
 
-![](/notes-img/javascript-notes/img-017.webp)
 
 We can use these Web APIs in our code through the global `window` object. Since `window` is the global object and our code runs in the global scope, we can call them directly (`setTimeout()` is the same as `window.setTimeout()`).
 
-![](/notes-img/javascript-notes/img-018.webp)
 
 ### setTimeout()
 
@@ -45,7 +42,6 @@ End
 Callback   (after 5 seconds)
 ```
 
-![](/notes-img/javascript-notes/img-019.webp)
 
 **What happens when we pass 0 as the time in setTimeout?** The output remains the same. The callback still goes through the callback queue, so it runs only after our main code has completely finished.
 
@@ -59,7 +55,6 @@ console.log("End");
 // Callback
 ```
 
-![](/notes-img/javascript-notes/img-020.webp)
 
 ### Event handlers
 
@@ -99,7 +94,6 @@ fetch("https://api.netflix.com").then(function cbF() {
 console.log("End");
 ```
 
-![](/notes-img/javascript-notes/img-021.webp)
 
 As usual, the global execution context is created and code runs line by line. The console Web API prints `Start`. `setTimeout` registers `cbT()` in the Web API environment and starts a 5000 ms timer. `fetch()` registers `cbF()` in the Web API environment and makes a network request to the Netflix server. Then `End` is printed.
 
@@ -215,7 +209,6 @@ We use the Date API above only to **simulate** a long-running task. There is no 
 
 From the fetch API example:
 
-![](/notes-img/javascript-notes/img-022.webp)
 
 ### Event loop summary
 

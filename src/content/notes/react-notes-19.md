@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 13
 description: "React — prop drilling, createContext, Provider, useContext, contextType and Consumer, updating context, multiple contexts, performance pitfalls, and when to use context."
@@ -15,7 +14,6 @@ description: "React — prop drilling, createContext, Provider, useContext, cont
 
 **Prop drilling:** say `App` has a `username`, and components **A**, **D** and **F** need it. For A it's easy — pass it as a prop. For **D**, we must pass it to **B**, and B passes it to D. For **F**, we pass it to **E**, and E passes it to F. Now imagine the value is needed 10 levels down: every component in between must accept and forward a prop it doesn't use. **Prop drilling** is passing data through parts of the tree that don't need it, just to get it to the part that does.
 
-![](/notes-img/react-notes/img-017.webp)
 
 (Composition — passing components as `children` — and render props can reduce drilling in some cases, but context is the general solution for data many components need.)
 

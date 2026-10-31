@@ -4,7 +4,6 @@ part: "Node.js Notes"
 track: "nodejs"
 kind: "notes"
 updated: "2026-09-02"
-source: "Nodejs.docx"
 draft: false
 order: 11
 description: "Node.js — Building Node.js Authentication from Scratch."
@@ -756,7 +755,6 @@ We need to secure the token when we are transferring to the user. We have two wa
     ```js
     Authorization : Bearer <token>
     ```
-### JWT in response
 
 ### controllers/user.js
 

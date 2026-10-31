@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 20
 description: "React — bundling, dynamic import(), React.lazy and Suspense, error boundaries, route-based splitting, and named exports."

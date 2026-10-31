@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 7
 description: "React — rendering lists with map, keys, reconciliation and the diffing algorithm, and why index as key is an anti-pattern."
@@ -175,19 +174,16 @@ When diffing two trees, React first compares the two root elements. What happens
 
 Say we have two items, Bruce and Clark, and we **add a third item at the end**. React iterates over both lists at the same time and makes a change wherever there's a difference.
 
-![](/notes-img/react-notes/img-004.webp)
 
 React matches the first items, sees no difference, then the second items, again no difference. At the third item it finds a new element and simply **inserts** it. Instead of destroying and rebuilding the list, React just adds one item.
 
 Now consider the same items, but this time we **insert at the beginning**. When React compares the lists position by position, **every item looks different** (position 0 was Bruce, now it's the new item; position 1 was Clark, now it's Bruce…). React ends up **updating every child** instead of realizing it can keep Bruce's and Clark's subtrees intact. This inefficiency can be a problem, and **to resolve it React supports the `key` attribute.**
 
-![](/notes-img/react-notes/img-005.webp)
 
 #### List with keys
 
 When children have keys, React uses the key to **match children in the old tree with children in the new tree**. Now React knows the item with `key=3` is new, and the items with `key=1` and `key=2` just moved. So React **keeps their subtrees** and simply inserts the new item at the top of the list.
 
-![](/notes-img/react-notes/img-006.webp)
 
 ```jsx
 // Before
@@ -237,7 +233,6 @@ The key is supposed to identify an **item**, but an index identifies a **positio
 
 You can read more here → [Index as a key is an anti-pattern](https://robinpokorny.medium.com/index-as-a-key-is-an-anti-pattern-e0349aece318)
 
-![](/notes-img/react-notes/img-007.webp)
 
 In the UI above we use the index as the key. Each row has an ID (the index + 1) and an **empty text field** where we can type anything. Say we type the row's ID into each field. After clicking **"Add New to End"** we have 3 rows. Now **we add an item at the beginning** by clicking **"Add New to Start"**. We expect the result to be:
 
@@ -250,21 +245,15 @@ In the UI above we use the index as the key. Each row has an ID (the index + 1) 
 | 2 | 2 | 2 |
 | 3 | 3 | 3 |
 
-![](/notes-img/react-notes/img-008.webp)
-![](/notes-img/react-notes/img-009.webp)
-![](/notes-img/react-notes/img-010.webp)
-![](/notes-img/react-notes/img-011.webp)
 
 **But we get this instead:**
 
-![](/notes-img/react-notes/img-012.webp)
 
 **How React interprets it:**
 
 1.  Initially we have 3 items, each with its index as the key:
 
-    ![](/notes-img/react-notes/img-013.webp)
-
+    
     -   `key=0` → ID 1, input shows "1"
     -   `key=1` → ID 2, input shows "2"
     -   `key=2` → ID 3, input shows "3"

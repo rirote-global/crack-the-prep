@@ -4,7 +4,6 @@ part: "JavaScript Notes"
 track: "javascript"
 kind: "notes"
 updated: "2026-09-14"
-source: "JavaScript Notes.docx"
 draft: false
 order: 5
 description: "JavaScript — How JavaScript works."
@@ -20,7 +19,6 @@ In JavaScript, **Execution context** is an abstract concept that holds informati
 | Key: Value pair | Commands |
 | Functions |  |
 
-![](/notes-img/javascript-notes/img-005.webp)
 _What happens when you run JavaScript code?_
 
 **Example code:**

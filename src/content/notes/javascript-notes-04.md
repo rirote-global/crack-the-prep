@@ -4,7 +4,6 @@ part: "JavaScript Notes"
 track: "javascript"
 kind: "notes"
 updated: "2026-09-14"
-source: "JavaScript Notes.docx"
 draft: false
 order: 7
 description: "JavaScript — Scope."
@@ -307,7 +306,6 @@ if (true) {
 
 When we debug in the browser, we see that `a` goes to the **Global** scope, while **a separate memory space (Block scope) is allocated for `b` and `c`**.
 
-![](/notes-img/javascript-notes/img-008.webp)
 
 **We cannot use `let` and `const` outside the block (ReferenceError: b is not defined), but we can use `var` outside the block.**
 
@@ -343,25 +341,21 @@ console.log(c);
 300
 ```
 
-Let's put 3 breakpoints in `index.js` and start debugging (Inspect > Sources tab, and click the line numbers as shown in the screenshot below).
+Let's put 3 breakpoints in `index.js` and start debugging (Inspect > Sources tab, and click the line numbers).
 
-![](/notes-img/javascript-notes/img-009.webp)
 
 Now reload the tab and start observing values and their scope.
 
 **1. Scope and value at the first breakpoint**
 
-![](/notes-img/javascript-notes/img-010.webp)
 
 **2. Scope and value at the second breakpoint**
 
-![](/notes-img/javascript-notes/img-011.webp)
 
 **3. Scope and value at the third breakpoint**
 
-![](/notes-img/javascript-notes/img-012.webp)
 
-The above screenshots explain why the inner `b` and `c` don't change the outer ones, and why redeclaring the same `let` in the same scope gives an error — both would need to live in the same memory space.
+This explains why the inner `b` and `c` don't change the outer ones, and why redeclaring the same `let` in the same scope gives an error — both would need to live in the same memory space.
 
 So we can conclude:
 

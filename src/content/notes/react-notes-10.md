@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 8
 description: "React — controlled and uncontrolled components, inputs, select, checkboxes, multiple inputs, file inputs, and validation."

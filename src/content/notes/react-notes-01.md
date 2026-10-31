@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 28
 description: "React — React 18 updates."
@@ -270,7 +269,6 @@ In a client-rendered app, you load the HTML of your page from the server along w
 
 If, however, your JavaScript bundle is huge, or you have a slow connection, this process can take a long time and the user will be waiting for the page to become interactive, or to see meaningful content.
 
-![](/notes-img/react-notes/img-001.webp)
 
 Illustration of client rendering flow. Source: React Conf 2021 Streaming Server Rendering with Suspense by Shaundai Person https://www.youtube.com/watch?v=pj5N-KhihgcIn a client rendering flow, a user has to wait a long time before the page becomes interactive. Source: React Conf 2021 Streaming Server Rendering with Suspense by Shaundai Person
 
@@ -278,7 +276,6 @@ For optimizing the user experience and avoiding the user having to sit on a blan
 
 Server rendering is a technique where you render the HTML output of your React components on the server and send HTML from the server. This lets the user view some UI while JS bundles are loading and before the app becomes interactive.
 
-![](/notes-img/react-notes/img-002.webp)
 
 ### Updates to Server Rendering APIs
 

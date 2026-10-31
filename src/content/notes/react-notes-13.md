@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 17
 description: "React — the render props pattern with a render prop and with children as a function, caveats, and how hooks replaced it."

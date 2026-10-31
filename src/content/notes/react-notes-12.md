@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 16
 description: "React — higher-order components (HOCs): why and how, passing props and parameters, caveats, and custom hooks as the modern alternative."
@@ -131,9 +130,7 @@ We realize we're **duplicating the same counter logic** in every component.
 
 We could **lift the state up** (move the logic to a parent and pass it to both children). But what if the components using the logic aren't siblings — **if they're 3–4 levels apart in the hierarchy, lifting state up is not a great solution.**
 
-![](/notes-img/react-notes/img-014.webp)
 
-![](/notes-img/react-notes/img-015.webp)
 
 ### Basic syntax of a HOC (imp)
 
@@ -195,7 +192,6 @@ class ClickedCounter extends Component {
 export default UpdatedComponent(ClickedCounter);
 ```
 
-![](/notes-img/react-notes/img-016.webp)
 
 _UI output: "Arjun Clicked 0 times" — the `name` prop came from the HOC._
 

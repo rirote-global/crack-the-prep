@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 11
 imp: true
@@ -391,7 +390,6 @@ With `[]`, the listener is added **once** — but it's never removed, which is t
 
 **If we don't remove the event listener, we get a problem** when the component unmounts: the handler still runs and tries to set state on a component that no longer exists. (To reproduce the error, remove the `return` part of `useEffect`.)
 
-![](/notes-img/react-notes/img-018.webp)
 
 The function **returned** from an effect is the **cleanup function**. React calls it **before the next effect run** and **when the component unmounts**.
 
@@ -523,7 +521,6 @@ export default IntervalHookCounter;
 
 You can use **as many effects as you like** in one component, and React runs them **in the order they're defined**. This is one of the big advantages over lifecycle methods: **related code stays together** instead of being split across `componentDidMount` and `componentDidUpdate`.
 
-![](/notes-img/react-notes/img-019.webp)
 
 ```jsx
 function Profile({ userId }) {
@@ -608,8 +605,8 @@ export const ChannelContext = createContext();
 function App() {
   return (
     <div className="App">
-      <UserContext.Provider value={"Vishwas"}>
-        <ChannelContext.Provider value={"Codevolution"}>
+      <UserContext.Provider value={"Arjun"}>
+        <ChannelContext.Provider value={"Acme Tutorials"}>
           <ComponentC />
         </ChannelContext.Provider>
       </UserContext.Provider>
@@ -684,7 +681,7 @@ function ComponentE() {
 export default ComponentE;
 ```
 
-**Output:** `User is Vishwas and channel is Codevolution`
+**Output:** `User is Arjun and channel is Acme Tutorials`
 
 **Remember:** a component that reads a context **re-renders whenever that context's value changes** — even if it's wrapped in `React.memo`.
 
@@ -1146,7 +1143,6 @@ When we click either **Increment Age** or **Increment Salary**, the age or salar
 
 After wrapping them, clicking **Increment Age** still re-renders the **Increment Salary button**, which isn't needed:
 
-![](/notes-img/react-notes/img-022.webp)
 
 **Why?** A **new arrow function is created every time the parent re-renders**, and functions are compared by **reference equality**. Two functions with identical bodies are **not** equal. So `incrementAge` and `incrementSalary` are **different objects on every render**, and since **they're props of `Button`, every `Button` sees changed props and re-renders.**
 

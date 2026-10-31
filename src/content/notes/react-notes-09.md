@@ -4,7 +4,6 @@ part: "React Notes"
 track: "react"
 kind: "notes"
 updated: "2026-09-15"
-source: "React JS.docx"
 draft: false
 order: 9
 description: "React — CSS stylesheets, inline styles, CSS Modules, CSS-in-JS and Tailwind, and when to use each."
