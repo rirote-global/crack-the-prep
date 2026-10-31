@@ -1,0 +1,116 @@
+---
+/**
+ * Run / Edit / Reset controls for one solution approach. Sits directly after
+ * the approach's static <Code> block, which it swaps for a textarea when
+ * editing. Code runs in a Web Worker (public/runner/worker.js) with a time
+ * limit; edits persist per approach in localStorage.
+ */
+import '../styles/runner.css';
+import { u } from '../consts';
+import { BUILD_ID } from '../lib/build.mjs';
+
+interface Props {
+  /** unique per approach, e.g. "array/contains-duplicate/1" — localStorage key */
+  id: string;
+  code: string;
+  spec: unknown;
+}
+
+const { id, code, spec } = Astro.props;
+const workerUrl = `${u('/runner/worker.js')}?v=${import.meta.env.PROD ? BUILD_ID : 'dev'}`;
+// Escape "<" in the JSON payload so a closing tag inside code samples cannot terminate the script element.
+const payload = JSON.stringify({ code, spec }).replace(/</g, '\\u003c');
+---
+
+<div class="runner" data-id={id} data-worker={workerUrl} hidden>
+  <script type="application/json" class="runner-data" set:html={payload} />
+  <div class="runner-bar">
+    <button type="button" class="rb rb-run" data-act="run">▶ Run</button>
+    <button type="button" class="rb" data-act="edit">✎ Edit</button>
+    <button type="button" class="rb" data-act="reset" hidden>↺ Reset</button>
+    <span class="runner-badge" hidden>edited</span>
+    <span class="runner-hint">Ctrl/⌘ + Enter to run</span>
+  </div>
+  <div class="runner-out" aria-live="polite" hidden></div>
+</div>
+
+
+<script>
+  import { type Spec, codeStore, el, execute, renderResults, runOnCtrlEnter } from '../lib/runner-client';
+
+  const store = codeStore('crack-the-prep:code:');
+
+  function setup(root: HTMLElement) {
+    const { code: reference, spec } = JSON.parse(root.querySelector('.runner-data')!.textContent!) as { code: string; spec: Spec };
+    const id = root.dataset.id!;
+    const staticCode = root.previousElementSibling as HTMLElement | null; // expressive-code block
+    const btn = (act: string) => root.querySelector<HTMLButtonElement>(`[data-act="${act}"]`)!;
+    const runBtn = btn('run'), editBtn = btn('edit'), resetBtn = btn('reset');
+    const badge = root.querySelector<HTMLElement>('.runner-badge')!;
+    const out = root.querySelector<HTMLElement>('.runner-out')!;
+    let editor: HTMLTextAreaElement | null = null;
+    let saveTimer = 0;
+
+    const syncBadge = () => { badge.hidden = !editor || editor.value === reference; };
+
+    function openEditor(initial: string) {
+      if (editor) return;
+      editor = el('textarea', 'runner-editor');
+      editor.spellcheck = false;
+      editor.setAttribute('autocapitalize', 'off');
+      editor.setAttribute('aria-label', 'Edit solution code');
+      editor.value = initial;
+      editor.rows = Math.min(40, initial.split('\n').length + 1);
+      runOnCtrlEnter(editor, run);
+      editor.addEventListener('input', () => {
+        syncBadge();
+        clearTimeout(saveTimer);
+        saveTimer = window.setTimeout(() => {
+          if (!editor) return;
+          if (editor.value === reference) store.del(id);
+          else store.set(id, editor.value);
+        }, 300);
+      });
+      if (staticCode) { staticCode.hidden = true; staticCode.before(editor); }
+      else root.before(editor);
+      editBtn.hidden = true;
+      resetBtn.hidden = false;
+      syncBadge();
+    }
+
+    async function run() {
+      runBtn.disabled = true;
+      runBtn.textContent = 'Running…';
+      try {
+        const res = await execute(root.dataset.worker!, editor ? editor.value : reference, spec);
+        renderResults(out, spec, res);
+      } finally {
+        runBtn.disabled = false;
+        runBtn.textContent = '▶ Run';
+      }
+    }
+
+    runBtn.addEventListener('click', run);
+    editBtn.addEventListener('click', () => { openEditor(store.get(id) ?? reference); editor!.focus(); });
+    resetBtn.addEventListener('click', () => {
+      clearTimeout(saveTimer);
+      store.del(id);
+      editor?.remove();
+      editor = null;
+      if (staticCode) staticCode.hidden = false;
+      editBtn.hidden = false;
+      resetBtn.hidden = true;
+      out.hidden = true;
+      syncBadge();
+    });
+
+    // Returning visitor: reopen their saved edit.
+    const saved = store.get(id);
+    if (saved !== null && saved !== reference) openEditor(saved);
+    root.hidden = false;
+  }
+
+  if (typeof Worker !== 'undefined') {
+    document.querySelectorAll<HTMLElement>('.runner').forEach(setup);
+  }
+</script>

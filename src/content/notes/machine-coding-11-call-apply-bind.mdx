@@ -1,0 +1,195 @@
+---
+title: "Polyfill: call, apply and bind"
+track: "machine-coding"
+kind: "notes"
+order: 11
+slug: "call-apply-bind"
+imp: true
+updated: 2026-09-22
+description: "Implement Function.prototype.call, apply and bind — including partial application and calling a bound function with new."
+---
+
+import Callout from '../../components/Callout.astro';
+
+## Problem
+
+Implement `myCall`, `myApply` and `myBind` on `Function.prototype` so they behave like the built-ins:
+
+```js
+function greet(greeting, punct) { return `${greeting}, ${this.name}${punct}`; }
+const user = { name: 'Asha' };
+
+greet.myCall(user, 'Hi', '!');          // "Hi, Asha!"
+greet.myApply(user, ['Hello', '.']);    // "Hello, Asha."
+const hi = greet.myBind(user, 'Hey');
+hi('?');                                // "Hey, Asha?"
+```
+
+## Clarifying questions
+
+- Should `null` / `undefined` as `thisArg` fall back to the global object (sloppy mode) or stay `undefined` (strict)? *Usually: fall back to `globalThis`.*
+- Should primitives (`'abc'`, `42`) as `thisArg` be boxed? *Yes — `Object(thisArg)`.*
+- Must a bound function work with `new`? *Ask — it separates good answers from great ones.*
+- Can I use the built-in `call`/`apply` inside? *No — that defeats the point.*
+
+## Approach
+
+A function called as a method (`obj.fn()`) gets `this === obj`. So to call `fn` with a chosen `this`, temporarily attach it to that object under a key that cannot collide (a `Symbol`), call it, then delete the key. `apply` is the same with an array of arguments. `bind` returns a new function that remembers `this` and the first arguments, and runs the same attach-call-delete trick when it is finally called. Each of the three is written standalone here — none depends on the others.
+
+## Step-by-step build
+
+### Step 1 — myCall
+
+```js
+Function.prototype.myCall = function (thisArg, ...args) {
+  const ctx = thisArg == null ? globalThis : Object(thisArg);
+  const key = Symbol('fn');   // unique: never overwrites a real property
+  ctx[key] = this;            // `this` is the function being called
+  const result = ctx[key](...args);
+  delete ctx[key];
+  return result;
+};
+```
+
+### Step 2 — myApply
+
+Same trick, written out in full instead of delegating to `myCall`. The only difference is that arguments arrive as one array (or `null` / `undefined`, meaning "no arguments").
+
+```js
+Function.prototype.myApply = function (thisArg, args) {
+  const ctx = thisArg == null ? globalThis : Object(thisArg);
+  const key = Symbol('fn');
+  ctx[key] = this;
+  const result = ctx[key](...(args ?? [])); // spread the array into real arguments
+  delete ctx[key];
+  return result;
+};
+```
+
+<Callout type="tip">
+Once `myCall` exists, `myApply` can be the one-liner `return this.myCall(thisArg, ...(args ?? []))`. Interviewers often ask for the standalone version to check that you understand the mechanism, not just the reuse.
+</Callout>
+
+### Step 3 — myBind with partial application
+
+```js
+Function.prototype.myBind = function (thisArg, ...preset) {
+  const fn = this;
+  return function (...later) {
+    const ctx = thisArg == null ? globalThis : Object(thisArg);
+    const key = Symbol('fn');
+    ctx[key] = fn;                                 // attach at call time, not bind time
+    const result = ctx[key](...preset, ...later);  // preset arguments first, then the later ones
+    delete ctx[key];
+    return result;
+  };
+};
+```
+
+### Step 4 — support `new`
+
+With the native `bind`, `new bound()` ignores the bound `this` and builds a fresh instance of the original function. Detect this with `new.target`, and link prototypes so `instanceof` still works.
+
+```js
+Function.prototype.myBind = function (thisArg, ...preset) {
+  if (typeof this !== 'function') throw new TypeError('Bind must be called on a function');
+  const fn = this;
+  function bound(...later) {
+    // `new.target` is set only when bound is called as `new bound()`.
+    // `new` must create a fresh instance, so the bound `thisArg` is ignored
+    // and the original function is constructed instead (preset args still apply).
+    if (new.target) return new fn(...preset, ...later);
+    const ctx = thisArg == null ? globalThis : Object(thisArg);
+    const key = Symbol('fn');
+    ctx[key] = fn;
+    const result = ctx[key](...preset, ...later);
+    delete ctx[key];
+    return result;
+  }
+  // Link prototypes so `new bound() instanceof bound` is true, as with native bind.
+  // Object.create gives bound its own prototype object that inherits from fn's
+  // (a direct assignment would share one object between the two functions).
+  // Arrow functions have no `prototype`, hence the guard.
+  if (fn.prototype) bound.prototype = Object.create(fn.prototype);
+  return bound;
+};
+```
+
+## Final code
+
+```js
+Function.prototype.myCall = function (thisArg, ...args) {
+  if (typeof this !== 'function') throw new TypeError('myCall must be called on a function');
+  const ctx = thisArg == null ? globalThis : Object(thisArg);
+  const key = Symbol('fn');
+  ctx[key] = this;
+  try {
+    return ctx[key](...args);
+  } finally {
+    delete ctx[key]; // clean up even if the function throws
+  }
+};
+
+Function.prototype.myApply = function (thisArg, args) {
+  if (typeof this !== 'function') throw new TypeError('myApply must be called on a function');
+  if (args != null && typeof args !== 'object' && typeof args !== 'function') {
+    throw new TypeError('myApply expects an array or array-like as the second argument');
+  }
+  const list = args == null ? [] : Array.from(args); // accepts arrays and array-likes (e.g. `arguments`)
+  const ctx = thisArg == null ? globalThis : Object(thisArg);
+  const key = Symbol('fn');
+  ctx[key] = this;
+  try {
+    return ctx[key](...list);
+  } finally {
+    delete ctx[key];
+  }
+};
+
+Function.prototype.myBind = function (thisArg, ...preset) {
+  if (typeof this !== 'function') throw new TypeError('myBind must be called on a function');
+  const fn = this;
+  function bound(...later) {
+    // Called as `new bound()`: ignore the bound `thisArg` and construct the original function.
+    if (new.target) return new fn(...preset, ...later);
+    const ctx = thisArg == null ? globalThis : Object(thisArg);
+    const key = Symbol('fn');
+    ctx[key] = fn;
+    try {
+      return ctx[key](...preset, ...later);
+    } finally {
+      delete ctx[key];
+    }
+  }
+  // Keep `new bound() instanceof bound` true; arrow functions have no `prototype`.
+  if (fn.prototype) bound.prototype = Object.create(fn.prototype);
+  return bound;
+};
+```
+
+## Edge cases
+
+- `thisArg` is `null`/`undefined` → `globalThis`; a primitive → boxed with `Object()`.
+- The target object is frozen — assigning the temporary key fails. Mention it; the real `call` has no such limit because it is implemented natively.
+- The function throws → the `finally` still removes the temporary key.
+- `myApply` with `null`/`undefined` args → called with no arguments; an array-like (`arguments`, `{ length: 2, 0: 'a', 1: 'b' }`) works; a primitive such as `5` → `TypeError`, as with the native `apply`.
+- Binding twice: `f.myBind(a).myBind(b)` keeps `a` — the first bound `this` wins, as with the native `bind`.
+- Arrow functions ignore `this` entirely; all three only forward the arguments.
+
+## Follow-ups
+
+- *Why a Symbol instead of `ctx.fn`?* A string key could overwrite an existing property.
+- *What does `bound.length` return?* Native `bind` sets it to `max(0, fn.length − preset.length)`; set it with `Object.defineProperty` if asked.
+- *Implement it without spread (ES5)?* Build the argument list as a string and `eval` — mention it only as history.
+
+## Common mistakes
+
+- Using an arrow function for the polyfill itself: then `this` is not the function being called.
+- Forgetting to delete the temporary property, leaving the object polluted.
+- `bind` that only supports `this` and not preset arguments.
+- Not returning the function's result.
+
+## Related
+
+- Concepts: [call, apply and bind](/javascript/15-call-apply-and-bind-method) and the [polyfill walkthrough](/javascript/16-polyfill-for-call-apply-and-bind-method) in the JavaScript track.
+- Next: [new operator and instanceof](/machine-coding/new-operator) reuses the same prototype ideas.

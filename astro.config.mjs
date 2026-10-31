@@ -1,0 +1,39 @@
+import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
+import expressiveCode from 'astro-expressive-code';
+import remarkCallouts from './src/plugins/remark-callouts.mjs';
+import rehypeImgAttrs from './src/plugins/rehype-img-attrs.mjs';
+import rehypeFigure from './src/plugins/rehype-figure.mjs';
+
+// CrackThePrep is served from https://rirote-global.github.io/crack-the-prep/
+// as a GitHub project page. Moving to a root domain later: set BASE to '' and
+// `site` to that domain.
+const BASE = '/crack-the-prep';
+
+export default defineConfig({
+  site: 'https://rirote-global.github.io',
+  base: BASE,
+  trailingSlash: 'ignore',
+  build: { format: 'directory' },
+  // Old URLs of pages that were split or renamed. Astro does not add `base` to the target.
+  redirects: {
+    '/machine-coding/map-filter-reduce': `${BASE}/machine-coding/foreach-map-filter`,
+    '/dsa/checklist': `${BASE}/dsa/solutions`,
+  },
+  markdown: {
+    remarkPlugins: [remarkCallouts],
+    rehypePlugins: [[rehypeImgAttrs, { base: BASE }], rehypeFigure],
+  },
+  integrations: [
+    expressiveCode({
+      themes: ['github-dark'],
+      styleOverrides: {
+        borderRadius: '6px',
+        codeFontFamily: "'Space Mono', ui-monospace, SFMono-Regular, monospace",
+      },
+    }),
+    mdx(),
+    sitemap(),
+  ],
+});

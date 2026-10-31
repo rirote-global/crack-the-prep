@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rirote-global.github.io/crack-the-prep/sitemap-index.xml

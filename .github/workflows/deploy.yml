@@ -1,0 +1,61 @@
+name: Deploy CrackThePrep to GitHub Pages
+
+# Checks data + notes, builds the Astro site (base path /crack-the-prep) and
+# publishes ./dist. Pull requests run the checks and build only — no deploy.
+# One-time setup: Settings → Pages → Source = "GitHub Actions".
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.event_name == 'pull_request' && github.ref || 'deploy' }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Blocks the deploy on any error: missing statements, broken core
+      # aliases, duplicate anchors, a reference solution failing its tests,
+      # or a machine-coding page whose final code fails its tests.
+      - name: Check data and notes
+        run: npm run check
+
+      - name: Build
+        run: npm run build   # astro build -> ./dist, then pagefind index
+
+      - uses: actions/configure-pages@v5
+        if: github.event_name != 'pull_request'
+
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
