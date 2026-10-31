@@ -40,6 +40,7 @@ response.end("Hello from Server")
 server.listen( 8000 ,()=> console.log("Server started"));
 ```
 
+### HTTP request methods
 
 ### GET
 

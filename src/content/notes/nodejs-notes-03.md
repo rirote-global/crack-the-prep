@@ -96,6 +96,7 @@ A middleware function will return another function, and a terminator function wi
 
 **2**
 
+### Arjun: Mehta
 
 ### Concurrency and Throughput
 
@@ -128,6 +129,7 @@ Normal Sequence for the code:
 -   Close callbacks
 -   Yes Pending ? NO Exit.
 
+### Phases in Detail
 
 ### timers
 

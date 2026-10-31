@@ -135,33 +135,54 @@ npm i socket.io
 ```
 Implement socker.io on frontend
 
+### Update public/index.html
 
+### <!DOCTYPE html>
 
+### `<html lang="en">`
 
+### `<head>`
 
+### `<meta charset="UTF-8" />`
 
+### `<meta name="viewport" content="width=device-width, initial-scale=1.0" />`
 
+### <title>Chat App</title>
 
+### `</head>`
 
 ### `<body>`
 
 **Chatting..**
 
+### `<script src="/socket.io/socket.io.js"></script>`
 
 ### `<script>`
 
 **var socket = io();**
 
+### `</script>`
 
+### `</body>`
 
+### `</html>`
 
+### 
+### Update public/index.html
 
+### <!DOCTYPE html>
 
+### `<html lang="en">`
 
+### `<head>`
 
+### `<meta charset="UTF-8" />`
 
+### `<meta name="viewport" content="width=device-width, initial-scale=1.0" />`
 
+### <title>Chat App</title>
 
+### `</head>`
 
 ### `<body>`
 
@@ -169,7 +190,9 @@ Implement socker.io on frontend
 
 **<input type="text" name="msg" id="message" placeholder="Enter Message" />**
 
+### <button id="sendBtn">Send</button>
 
+### `<script src="/socket.io/socket.io.js"></script>`
 
 ### `<script>`
 
@@ -191,7 +214,9 @@ Implement socker.io on frontend
 
 **})**
 
+### `</script>`
 
+### `</body>`
 
 ### `</html>`
 
@@ -343,20 +368,31 @@ socket.emit("user-message",message)
 
 Now we want to show it on the frontend not in the console.
 
+### Update public/index.html
 
+### <!DOCTYPE html>
 
+### `<html lang="en">`
 
+### `<head>`
 
+### `<meta charset="UTF-8" />`
 
+### `<meta name="viewport" content="width=device-width, initial-scale=1.0" />`
 
+### <title>Chat App</title>
 
+### `</head>`
 
 ### `<body>`
 
 **<input type="text" name="msg" id="message" placeholder="Enter Message" />**
 
+### <button id="sendBtn">Send</button>
 
+### <div id="messages"></div>
 
+### `<script src="/socket.io/socket.io.js"></script>`
 
 ### `<script>`
 
@@ -391,6 +427,8 @@ Now we want to show it on the frontend not in the console.
 
 **})**
 
+### `</script>`
 
+### `</body>`
 
 

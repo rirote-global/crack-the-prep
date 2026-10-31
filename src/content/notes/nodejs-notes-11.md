@@ -755,6 +755,7 @@ We need to secure the token when we are transferring to the user. We have two wa
     ```js
     Authorization : Bearer <token>
     ```
+### JWT in response
 
 ### controllers/user.js
 
